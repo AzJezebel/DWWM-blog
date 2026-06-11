@@ -1,0 +1,28 @@
+ARTICLE (id_article, titre, contenu, statut, date_publication, date_modification)
+CATEGORIE (id_categorie, nom)
+TAG (id_tag, nom)
+COMMENTAIRE (id_commentaire, auteur, contenu, date_publication, date_modification)
+UTILISATEUR (id_utilisateur, nom, email, mot_de_passe, role, date_creation)
+
+Associations :
+- UN ARTICLE APPARTIENT À UNE CATEGORIE (0,1) → (1,1) CATEGORIE
+- UN ARTICLE PEUT AVOIR PLUSIEURS TAGS (0,n) ← (0,n) TAG
+- UN ARTICLE PEUT AVOIR PLUSIEURS COMMENTAIRES (1,n) ← (0,1) COMMENTAIRE
+- UN UTILISATEUR PEUT POSTER PLUSIEURS COMMENTAIRES (1,n) ← (0,1) COMMENTAIRE
+- UN UTILISATEUR PEUT ÊTRE ADMIN OU USER (géré via le champ role)
+
+[Visiteur] 
+   → Liste articles paginés + filtres (catégorie/tag)
+   → Détail article + commentaires
+
+[Utilisateur]
+   → Mêmes droits que visiteur
+   → Inscription / connexion
+   → Ajouter / modifier / supprimer SES commentaires
+
+[Admin]
+   → Connexion dédiée
+   → CRUD articles (avec gestion brouillon/publié)
+   → CRUD catégories
+   → CRUD tags
+   → Supprimer TOUS les commentaires
