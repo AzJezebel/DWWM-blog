@@ -1,0 +1,74 @@
+USERS
+
+id              INT NON NULL PK AUTO_INCREMENT
+name            VARCHAR(255)
+email           VARCHAR(255) UNIQUE
+password        VARCHAR(255)
+role            ENUM('user','admin') DEFAULT 'user'
+remember_token  VARCHAR(100) NULL
+created_at      DATETIME NULL
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+CATEGORIES
+
+id              INT NON NULL PK AUTO_INCREMENT
+name            VARCHAR(255)
+slug            VARCHAR(255) UNIQUE
+created_at      DATETIME NULL
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+TAGS
+
+id              INT NON NULL PK AUTO_INCREMENT
+name            VARCHAR(255)
+slug            VARCHAR(255) UNIQUE
+created_at      DATETIME NULL
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ARTICLES
+
+id               INT NON NULL PK AUTO_INCREMENT
+title            VARCHAR(255)
+content          TEXT
+status           ENUM('draft','published') DEFAULT 'draft'
+category_id      INT NON NULL FK → categories(id)
+user_id          INT NON NULL FK → users(id)  -- auteur
+created_at       DATETIME NULL
+published_at     DATETIME NULL
+updated_at       DATETIME NULL
+
+-- Contraintes
+FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+COMMENTS
+
+id               INT NON NULL PK AUTO_INCREMENT
+content          TEXT
+article_id       INT NON NULL FK → articles(id)
+user_id          INT NON NULL FK → users(id)
+created_at       DATETIME NULL
+updated_at       DATETIME NULL
+
+-- Contraintes
+FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ARTICLE_TAG
+
+article_id       INT NON NULL FK → articles(id)
+tag_id           INT NON NULL FK → tags(id)
+
+-- Clé primaire composite
+PRIMARY KEY (article_id, tag_id)
+
+-- Contraintes
+FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE
+FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
