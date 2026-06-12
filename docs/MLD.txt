@@ -1,0 +1,8 @@
+--------------------MLD--------------------
+
+UTILISATEUR (id_utilisateur, nom, email, mot_de_passe, role, date_inscription)
+ARTICLE (id_article, titre, contenu, statut, date_creation, date_modification, #id_categorie, #id_utilisateur)
+CATEGORIE (id_categorie, nom, slug)
+TAG (id_tag, nom, slug)
+COMMENTAIRE (id_commentaire, contenu, date_creation, date_modification, #id_utilisateur, #id_article)
+ARTICLE_TAG (#id_article, #id_tag)

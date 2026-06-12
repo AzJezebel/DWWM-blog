@@ -1,8 +1,69 @@
-ARTICLE (id_article, titre, contenu, statut, date_publication, date_modification)
-CATEGORIE (id_categorie, nom)
-TAG (id_tag, nom)
-COMMENTAIRE (id_commentaire, auteur, contenu, date_publication, date_modification)
-UTILISATEUR (id_utilisateur, nom, email, mot_de_passe, role, date_creation)
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                              DIAGRAMME UML DE CLASSES                                │
+└─────────────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────┐          ┌──────────────────────────────────────────┐
+│      Category        │          │                 Article                   │
+├──────────────────────┤          ├──────────────────────────────────────────┤
+│ - id: BigInteger(PK) │◄─────────│ - id: BigInteger(PK)                      │
+│ - name: string       │ 1     0,1│ - title: string                          │
+│ - slug: string       │          │ - content: text                          │
+│ + getArticles()      │          │ - status: enum(draft,published)          │
+└──────────────────────┘          │ - published_at: datetime                 │
+                                  │ - created_at: timestamp                  │
+                                  │ - updated_at: timestamp                  │
+                                  │──────────────────────────────────────────│
+                                  │ - category_id: BigInteger(FK)            │
+                                  │ - user_id: BigInteger(FK)                │
+                                  │ + getCategory(): Category                │
+                                  │ + getTags(): Tag[]                       │
+                                  │ + getComments(): Comment[]               │
+                                  └──────────────────────────────────────────┘
+                                         │ 1                        │ 0..*
+                                         │                          │
+                                         │                          ▼
+                                         │                 ┌──────────────────────┐
+                                         │                 │       Comment        │
+                                         │                 ├──────────────────────┤
+                                         │                 │ - id: BigInteger(PK) │
+                                         │                 │ - content: text      │
+                                         │                 │ - created_at: ts     │
+                                         │                 │ - updated_at: ts     │
+                                         │                 │──────────────────────│
+                                         │                 │ - article_id: FK     │
+                                         │                 │ - user_id: FK        │
+                                         │                 │ + getUser(): User    │
+                                         │                 └──────────────────────┘
+                                         │                            │
+                                         │                            │ 1
+                                         │                            │
+                                         │                            ▼
+                                         │                 ┌──────────────────────┐
+                                         │                 │        User          │
+                                         │                 ├──────────────────────┤
+                                         │                 │ - id: BigInteger(PK) │
+                                         │                 │ - name: string       │
+                                         │                 │ - email: string      │
+                                         │                 │ - password: string   │
+                                         │                 │ - role: enum         │
+                                         │                 │ + getComments()      │
+                                         │                 │ + getArticles()      │
+                                         │                 └──────────────────────┘
+                                         │
+                                         │ 0..*
+                                         │
+                                         ▼
+┌──────────────────────┐          ┌──────────────────────────────────────────┐
+│         Tag          │          │              Article_Tag                 │
+├──────────────────────┤          │ (table pivot - many-to-many)             │
+│ - id: BigInteger(PK) │          ├──────────────────────────────────────────┤
+│ - name: string       │          │ - article_id: BigInteger(FK)             │
+│ - slug: string       │          │ - tag_id: BigInteger(FK)                 │
+└──────────────────────┘          └──────────────────────────────────────────┘
+        ▲                                   │
+        │                                   │
+        └───────────────────────────────────┘
+                    0..* (association many-to-many)
 
 Associations :
 - UN ARTICLE APPARTIENT À UNE CATEGORIE (0,1) → (1,1) CATEGORIE
