@@ -1,0 +1,59 @@
+┌────────────────────────────────────────────────────────────────────────────┐
+│                              BLOG LARAVEL                                  │
+├────────────────────────────────────────────────────────────────────────────┤
+│                                                                            │
+│  ┌──────────────┐      ┌─────────────────────────────────────────────┐     │
+│  │   VISITEUR   │      │                 (UC1) Voir liste articles   │     │
+│  │  (non auth)  │────▶│                 (UC2) Filtrer par catégorie  │    │
+│  └──────────────┘      │                 (UC3) Filtrer par tag       │     │
+│         │              │                 (UC4) Combiner filtres      │     │
+│         │ (s'inscrit)  │                 (UC5) Voir détail article   │     │
+│         ▼              │                 (UC6) Lire commentaires     │     │
+│  ┌──────────────┐      └─────────────────────────────────────────────┘     │
+│  │  UTILISATEUR │      ┌─────────────────────────────────────────────┐     │
+│  │   (user)     │────▶│                 (UC7) S'inscrire             │    │
+│  └──────────────┘      │                 (UC8) Se connecter          │     │
+│         ▲              │                 (UC9) Se déconnecter        │     │
+│         │              │                 (UC10) Poster commentaire   │     │
+│         │ (devient     │                 (UC11) Modifier son comment.│     │
+│         │  admin)      │                 (UC12) Supprimer son comment│     │
+│         │              └─────────────────────────────────────────────┘     │
+│  ┌──────────────┐      ┌──────────────────────────────────────────────┐    │
+│  │ADMINISTRATEUR│────▶│ (UC13) Créer article   (UC18) Créer catégorie│     │
+│  │   (admin)    │      │ (UC14) Modifier article (UC19) Modifier cat. │     │
+│  └──────────────┘      │ (UC15) Publier/dépublier(UC20) Supprimer cat.│     │
+│                        │ (UC16) Supprimer article(UC21) Créer tag     │     │
+│                        │ (UC17) Supprimer tout commentaire            │     │
+│                        │ (UC22) Modifier tag   (UC23) Supprimer tag   │     │
+│                        └──────────────────────────────────────────────┘     │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+
+
+ID	                    Use Case	                                           Acteur(s)                                    Description
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│UC1	 │      Consulter la liste des articles	            │       Visiteur, Utilisateur, Admin        │       Voir les articles publiés paginés (du + récent au + ancien)   │
+│UC2	 │      Filtrer les articles par catégorie	        │       Visiteur, Utilisateur, Admin        │       Voir uniquement les articles d'une catégorie                  │
+│UC3	 │      Filtrer les articles par tag	            │       Visiteur, Utilisateur, Admin        │       Voir uniquement les articles associés à un tag                │
+│UC4	 │      Combiner filtres catégorie + tag	        │       Visiteur, Utilisateur, Admin        │       Voir les articles correspondant aux deux critères             │
+│UC5	 │      Voir le détail d'un article	                │       Visiteur, Utilisateur, Admin        │       Afficher titre, contenu, catégorie, tags, commentaires        │
+│UC6	 │      Lire les commentaires d'un article	        │       Visiteur, Utilisateur, Admin        │       Voir la liste des commentaires associés                       │
+│UC7	 │      S'inscrire	                                │       Utilisateur	                        │       Créer un compte avec nom, email, mot de passe                 │
+│UC8	 │      Se connecter	                            │       Utilisateur, Admin	                │       Authentification                                              │
+│UC9	 │      Se déconnecter	                            │       Utilisateur, Admin	                │       Fin de session                                                │
+│UC10	 │      Poster un commentaire	                    │       Utilisateur	                        │       Ajouter un commentaire sur un article                         │
+│UC11	 │      Modifier son commentaire	                │       Utilisateur	                        │       Modifier le contenu de son propre commentaire                 │
+│UC12	 │      Supprimer son commentaire	                │       Utilisateur	                        │       Supprimer son propre commentaire                              │
+│UC13	 │      Créer un article	                        │       Admin	                            │       Nouvel article (brouillon ou publié)                          │
+│UC14	 │      Modifier un article	                        │       Admin	                            │       Changer titre, contenu, catégorie, tags, statut               │
+│UC15	 │      Publier/dépublier un article	            │       Admin	                            │       Changer statut (brouillon ↔ publié)                           │
+│UC16	 │      Supprimer un article	                    │       Admin	                            │       Supprimer définitivement un article                           │
+│UC17	 │      Supprimer un commentaire (admin)	        │       Admin	                            │       Supprimer n'importe quel commentaire                          │
+│UC18	 │      Créer une catégorie	                        │       Admin	                            │       Ajouter une nouvelle catégorie                                │
+│UC19	 │      Modifier une catégorie	                    │       Admin	                            │       Renommer ou modifier une catégorie                            │
+│UC20	 │      Supprimer une catégorie	                    │       Admin	                            │       Supprimer une catégorie                                       │
+│UC21	 │      Créer un tag	                            │       Admin	                            │       Ajouter un nouveau tag                                        │
+│UC22	 │      Modifier un tag	                            │       Admin	                            │       Renommer ou modifier un tag                                   │
+│UC23	 │      Supprimer un tag	                        │       Admin	                            │       Supprimer un tag                                              │    
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
