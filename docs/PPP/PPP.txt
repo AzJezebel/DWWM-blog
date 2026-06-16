@@ -1,0 +1,44 @@
+====================================================================================PP====================================================================================
+
+ID	                    Use Case	                                           Acteur(s)                                    Description
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│UC1	 │      Consulter la liste des projets	            │       Visiteur, Admin                     │       Voir les projets publiés paginés (du + récent au + ancien)      │
+│UC2	 │      Filtrer les projets par catégorie	        │       Visiteur, Admin                     │       Voir uniquement les projets d'une catégorie                     │
+│UC3	 │      Filtrer les projets par tag	                │       Visiteur, Admin                     │       Voir uniquement les projets associés à un tag                   │
+│UC4	 │      Combiner filtres catégorie + tag	        │       Visiteur, Admin                     │       Voir les projets correspondant aux deux critères                │
+│UC5	 │      Voir le détail d'un projet	                │       Visiteur, Admin                     │       Afficher catégorie/tags, carousel, techstack, challenges, repo  │
+│UC6	 │      Poster un mail	                            │       Visiteur                            │       Envoyer un mail directement a admin ping + autoreply            │
+│UC7	 │      Se connecter	                            │       Admin	                            │       Authentification                                                │
+│UC8	 │      Se déconnecter	                            │       Admin	                            │       Fin de session                                                  │
+│UC9	 │      Créer une page projet	                    │       Admin	                            │       Nouveau projet (draft ou published)                             │
+│UC10	 │      Modifier un projet	                        │       Admin	                            │       Edit project data                                               │
+│UC11	 │      Publier/dépublier un projet	                │       Admin	                            │       Change status (draft ↔ published)                               │
+│UC12	 │      Supprimer un projet	                        │       Admin	                            │       Definitively delete a project from the site                     │
+│UC13	 │      Créer une catégorie	                        │       Admin	                            │       Ajouter une nouvelle catégorie                                  │
+│UC14	 │      Modifier une catégorie	                    │       Admin	                            │       Renommer ou modifier une catégorie                              │
+│UC15	 │      Supprimer une catégorie	                    │       Admin	                            │       Supprimer une catégorie                                         │
+│UC16	 │      Créer un tag	                            │       Admin	                            │       Ajouter un nouveau tag                                          │
+│UC17	 │      Modifier un tag	                            │       Admin	                            │       Renommer ou modifier un tag                                     │
+│UC18	 │      Supprimer un tag	                        │       Admin	                            │       Supprimer un tag                                                │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Admin       Use Admin Dashboard (Filament) to update data via WYSIWYG. The data is pulled from database. Showcase MVC understanding.
+Visitor     View paginated gallery of project. Each has its Details with carousel of medias, the tech stack list, the challenges faced and the direct link to the git repo
+                (Filter project via 'tech' is good showcase of dynamic query with good ORM relation)
+Visitor     Smart contact : can send mail from the site. (Mails should be stored in a 'messages' or 'mail' TABLE could use Laravel Notification to send discord alert and auto reply with thanks you)
+                (prove background jobs handling)
+Visitor     Sandbox area to write simple HTML/CSS or JS in text area and a RENDER button (The Fun Part: Use Laravel to sanitize the input (using strip_tags or a package) and render it inside an iframe.)
+                (XSS prevention + security DO NOT ALLOW PHP EXEC ONLY FRONT-END CODE)
+Visitor     Dark mode server-side pref stored in a Cookie? 
+                (understand the HTTP request lifecycle.) 
+
+META
+Admin       The "Route List" API: Expose a public endpoint (/api/routes) that uses Route::getRoutes() to return a JSON list of all your API endpoints. 
+            Add frontend page that beautifully lists them using Alpine.js.
+            (understands RESTful conventions)
+Admin       The "Deployable" Snapshot: Use Laravel Pint for code styling and Git Hooks (via Laravel Sail or Herd). 
+            In README, include a docker-compose.yml file. 
+            (knows how to spin up the entire environment (Nginx, MySQL, Redis) with one command)
+
+Admin       Don't need users or roles tables. Admin accesses dashboard via a secret route (e.g., /admin-panel)
+             protected by HTTP Basic Auth (built into Laravel) or a simple "Secret Key" middleware.
