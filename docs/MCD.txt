@@ -1,5 +1,5 @@
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
-│                              DIAGRAMME UML DE CLASSES                                │
+│                              DIAGRAMME UML DE CLASSES                               │
 └─────────────────────────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────┐          ┌──────────────────────────────────────────┐
@@ -10,8 +10,8 @@
 │ - slug: string       │          │ - content: text                          │
 │ + getArticles()      │          │ - status: enum(draft,published)          │
 └──────────────────────┘          │ - published_at: datetime                 │
-                                  │ - created_at: datetime                  │
-                                  │ - updated_at: datetime                  │
+                                  │ - created_at: datetime                   │
+                                  │ - updated_at: datetime                   │
                                   │──────────────────────────────────────────│
                                   │ - category_id: BigInteger(FK)            │
                                   │ - user_id: BigInteger(FK)                │
