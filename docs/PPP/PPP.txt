@@ -8,18 +8,19 @@ ID	                    Use Case	                                           Acteu
 │UC4	 │      Combiner filtres catégorie + tag	        │       Visiteur, Admin                     │       Voir les projets correspondant aux deux critères                │
 │UC5	 │      Voir le détail d'un projet	                │       Visiteur, Admin                     │       Afficher catégorie/tags, carousel, techstack, challenges, repo  │
 │UC6	 │      Poster un mail	                            │       Visiteur                            │       Envoyer un mail directement a admin ping + autoreply            │
-│UC7	 │      Se connecter	                            │       Admin	                            │       Authentification                                                │
-│UC8	 │      Se déconnecter	                            │       Admin	                            │       Fin de session                                                  │
-│UC9	 │      Créer une page projet	                    │       Admin	                            │       Nouveau projet (draft ou published)                             │
-│UC10	 │      Modifier un projet	                        │       Admin	                            │       Edit project data                                               │
-│UC11	 │      Publier/dépublier un projet	                │       Admin	                            │       Change status (draft ↔ published)                               │
-│UC12	 │      Supprimer un projet	                        │       Admin	                            │       Definitively delete a project from the site                     │
-│UC13	 │      Créer une catégorie	                        │       Admin	                            │       Ajouter une nouvelle catégorie                                  │
-│UC14	 │      Modifier une catégorie	                    │       Admin	                            │       Renommer ou modifier une catégorie                              │
-│UC15	 │      Supprimer une catégorie	                    │       Admin	                            │       Supprimer une catégorie                                         │
-│UC16	 │      Créer un tag	                            │       Admin	                            │       Ajouter un nouveau tag                                          │
-│UC17	 │      Modifier un tag	                            │       Admin	                            │       Renommer ou modifier un tag                                     │
-│UC18	 │      Supprimer un tag	                        │       Admin	                            │       Supprimer un tag                                                │
+│UC7	 │      Telecharger le CV                           │       Visiteur                            │       Click sur un bouton qui DL un CV.pdf                            │
+│UC8	 │      Se connecter	                            │       Admin	                            │       Authentification                                                │
+│UC9	 │      Se déconnecter	                            │       Admin	                            │       Fin de session                                                  │
+│UC10	 │      Créer une page projet	                    │       Admin	                            │       Nouveau projet (draft ou published)                             │
+│UC11	 │      Modifier un projet	                        │       Admin	                            │       Edit project data                                               │
+│UC12	 │      Publier/dépublier un projet	                │       Admin	                            │       Change status (draft ↔ published)                               │
+│UC13	 │      Supprimer un projet	                        │       Admin	                            │       Definitively delete a project from the site                     │
+│UC14	 │      Créer une catégorie	                        │       Admin	                            │       Ajouter une nouvelle catégorie                                  │
+│UC15	 │      Modifier une catégorie	                    │       Admin	                            │       Renommer ou modifier une catégorie                              │
+│UC16	 │      Supprimer une catégorie	                    │       Admin	                            │       Supprimer une catégorie                                         │
+│UC17	 │      Créer un tag	                            │       Admin	                            │       Ajouter un nouveau tag                                          │
+│UC18	 │      Modifier un tag	                            │       Admin	                            │       Renommer ou modifier un tag                                     │
+│UC19	 │      Supprimer un tag	                        │       Admin	                            │       Supprimer un tag                                                │
 └───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 
 Admin       Use Admin Dashboard (Filament) to update data via WYSIWYG. The data is pulled from database. Showcase MVC understanding.
