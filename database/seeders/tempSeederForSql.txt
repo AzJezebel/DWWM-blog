@@ -1,0 +1,124 @@
+INSERT INTO articles (title, slug, content, created_at) VALUES
+(
+    'Bienvenue sur mon blog',
+    'bienvenue-sur-mon-blog',
+    'Ceci est mon tout premier article sur ce blog. Je suis ravi de partager avec vous mes réflexions et découvertes. Au fil des prochains articles, je parlerai de divers sujets qui me passionnent comme le développement web, la photographie et les voyages. N hésitez pas à laisser des commentaires et à partager vos propres expériences.',
+    '2026-01-15 09:30:00'
+),
+(
+    'Les bases du développement web',
+    'les-bases-du-developpement-web',
+    'Le développement web est un domaine fascinant qui ne cesse d évoluer. Dans cet article, je vous propose de découvrir les fondamentaux : HTML pour la structure, CSS pour le style et JavaScript pour l interactivité. Ces trois langages forment la base de tout site internet moderne et sont accessibles aux débutants.',
+    '2026-01-18 14:20:00'
+),
+(
+    'Mes astuces pour voyager pas cher',
+    'mes-astuces-pour-voyager-pas-cher',
+    'Voyager ne doit pas forcément rimer avec dépenser une fortune. Après plusieurs années à parcourir le monde, j ai compilé mes meilleures astuces pour économiser : réserver ses billets à l avance, privilégier les auberges de jeunesse, utiliser les transports locaux et manger dans les marchés. Avec un peu de préparation, on peut découvrir des merveilles sans se ruiner.',
+    '2026-01-21 11:45:00'
+),
+(
+    'Pourquoi j aime la photographie argentique',
+    'pourquoi-j-aime-la-photographie-argentique',
+    'À l heure du tout numérique, la photographie argentique connaît un regain d intérêt. Personnellement, j adore le grain, les couleurs et la lenteur du processus. Développer ses propres pellicules est une expérience presque magique qui nous reconnecte à l essence même de la photographie. Chaque cliché compte et cela change complètement notre façon de shooter.',
+    '2026-01-24 16:00:00'
+),
+(
+    '10 livres à lire absolument en 2026',
+    '10-livres-a-lire-absolument-en-2026',
+    'La lecture est une porte ouverte sur d autres mondes. Cette année, j ai sélectionné dix ouvrages qui m ont particulièrement marqué. Des romans contemporains aux essais philosophiques en passant par des recueils de poésie, il y en a pour tous les goûts. Je vous invite à découvrir ces pépites littéraires qui ont enrichi ma réflexion et mon imaginaire.',
+    '2026-01-27 08:15:00'
+),
+(
+    'Comment débuter en programmation Python',
+    'comment-debuter-en-programmation-python',
+    'Python est aujourd hui l un des langages de programmation les plus prisés. Sa syntaxe claire et sa polyvalence en font un excellent choix pour les débutants. Dans ce tutoriel, je vous guide pas à pas pour installer Python, écrire votre premier script Hello World et comprendre les bases comme les variables, les boucles et les fonctions.',
+    '2026-01-30 13:30:00'
+),
+(
+    'Ma recette de pain maison facile',
+    'ma-recette-de-pain-maison-facile',
+    'Rien ne vaut l odeur du pain frais qui sort du four. Après de nombreux essais, j ai trouvé la recette parfaite pour un pain croustillant à l extérieur et moelleux à l intérieur. Il ne vous faut que de la farine, de l eau, du sel et un peu de levure. Le plus dur est d attendre que la pâte lève. Mais croyez-moi, le résultat en vaut la peine.',
+    '2026-02-02 19:45:00'
+),
+(
+    'Les bienfaits de la méditation quotidienne',
+    'les-bienfaits-de-la-meditation-quotidienne',
+    'La méditation a transformé ma vie. En pratiquant seulement dix minutes par jour, j ai constaté une réduction significative de mon stress, une meilleure concentration et un sommeil réparateur. Dans cet article, je partage quelques techniques simples pour débuter et les conseils qui m ont aidé à intégrer cette pratique dans mon quotidien bien chargé.',
+    '2026-02-05 07:00:00'
+),
+(
+    'Mon voyage au Japon : carnet de bord',
+    'mon-voyage-au-japon-carnet-de-bord',
+    'Le Japon est un pays qui m a toujours fasciné. Lors de mon récent voyage, j ai découvert un mélange unique de traditions ancestrales et de modernité ultratechnologique. Des temples de Kyoto aux ruelles animées de Tokyo, chaque instant était une nouvelle aventure. Je vous raconte ici mes coups de cœur, mes bonnes adresses et mes anecdotes de voyage.',
+    '2026-02-08 10:10:00'
+),
+(
+    'Les erreurs à éviter en tant que débutant blogueur',
+    'les-erreurs-a-eviter-en-tant-que-debutant-blogueur',
+    'Démarrer un blog est une aventure excitante mais comporte son lot d embûches. Après plusieurs mois d expérience, j ai identifié les erreurs les plus fréquentes : négliger le référencement, publier de manière irrégulière, ignorer son audience ou encore choisir une thématique trop large. Je vous livre mes conseils pour débuter du bon pied et fidéliser vos lecteurs.',
+    '2026-02-11 17:30:00'
+);
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO categories (name, slug, created_at) VALUES
+(
+    'Développement Web',
+    'developpement-web',
+    '2026-01-15 09:30:00'
+),
+(
+    'Voyages et Découvertes',
+    'voyages-et-decouvertes',
+    '2026-01-18 14:20:00'
+),
+(
+    'Photographie Créative',
+    'photographie-creative',
+    '2026-01-21 11:45:00'
+),
+(
+    'Lecture et Littérature',
+    'lecture-et-litterature',
+    '2026-01-24 16:00:00'
+),
+(
+    'Programmation Informatique',
+    'programmation-informatique',
+    '2026-01-27 08:15:00'
+),
+(
+    'Cuisine Gastronomique',
+    'cuisine-gastronomique',
+    '2026-01-30 13:30:00'
+),
+(
+    'Bien-être et Santé',
+    'bien-etre-et-sante',
+    '2026-02-02 19:45:00'
+),
+(
+    'Culture et Arts',
+    'culture-et-arts',
+    '2026-02-05 07:00:00'
+),
+(
+    'Astuces Pratiques',
+    'astuces-pratiques',
+    '2026-02-08 10:10:00'
+),
+(
+    'Tutoriels Débutants',
+    'tutoriels-debutants',
+    '2026-02-11 17:30:00'
+);

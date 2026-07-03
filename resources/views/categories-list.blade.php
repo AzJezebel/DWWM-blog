@@ -8,7 +8,7 @@
 </head>
 <body>
     @foreach ($categories as $category)
-        <p>$category->name</p>
+        <p>{{ $category->name }}</p>
     @endforeach
 </body>
 </html>
