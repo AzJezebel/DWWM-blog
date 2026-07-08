@@ -12,6 +12,7 @@
         <div>
             <h2>{{ $article->title }}</h2>
             <p>{{ $article->content }}</p>
+            <p>{{ $article->category->name }}</p>
         </div>
     @endforeach
 </body>

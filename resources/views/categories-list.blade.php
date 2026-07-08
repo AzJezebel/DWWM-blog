@@ -7,8 +7,18 @@
     <title>Categories List</title>
 </head>
 <body>
-    @foreach ($categories as $category)
-        <p>{{ $category->name }}</p>
-    @endforeach
+    <h1>Categoies List</h1>
+
+    @forelse ($categories as $category)
+    <div>
+        <h2>{{ $category->name }}</h2>
+        
+        @foreach ($category->articles as $article)
+            <p>{{ $article->title }}</p>
+        @endforeach
+    </div>
+    @empty
+    <p>There is no categories available</p>
+    @endforelse
 </body>
 </html>
