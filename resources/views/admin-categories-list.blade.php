@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Articles — Admin</title>
+    <title>Catégories — Admin</title>
     <style>
         * { box-sizing: border-box; }
 
@@ -71,17 +71,9 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 12px;
         }
 
         .admin-panel-header h1 { font-size: 22px; margin: 0; }
-
-        .header-actions {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
 
         .admin-table {
             width: 100%;
@@ -101,17 +93,14 @@
             padding: 12px 8px;
         }
 
-        .status-dot {
+        .article-count {
             display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-right: 6px;
-            background: #ccc;
+            background: #f0f0f0;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
         }
-
-        .status-dot.status-published { background: #2ecc71; }
-        .status-dot.status-draft { background: #ccc; }
 
         .actions { display: flex; gap: 12px; }
 
@@ -121,6 +110,16 @@
             cursor: not-allowed;
             font-size: 15px;
             opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .icon-btn:not(.disabled) {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        .icon-btn:not(.disabled):hover {
+            opacity: 1;
         }
 
         .empty-state {
@@ -149,14 +148,10 @@
             pointer-events: none;
         }
 
-        .btn-pill-outline {
+        .btn-pill-secondary {
             background: transparent;
             color: #111;
             border: 1px solid #111;
-        }
-
-        .btn-pill-outline:hover {
-            background: #f5f5f5;
         }
 
         /* Pagination */
@@ -184,58 +179,51 @@
 
     <main class="page">
         <div class="admin-panel-header">
-            <h1>Articles</h1>
-            <div class="header-actions">
-                <a href="{{ route('categories.index') }}" class="btn-pill btn-pill-outline">Gérer les catégories</a>
-                <button type="button" class="btn-pill" disabled title="À venir">+ Nouvel article</button>
-            </div>
+            <h1>Catégories</h1>
+            <button type="button" class="btn-pill" disabled title="À venir">+ Nouvelle catégorie</button>
         </div>
 
         <table class="admin-table">
             <thead>
                 <tr>
-                    <th>Titre</th>
-                    <th>Catégorie</th>
-                    <th>Statut</th>
-                    <th>Date</th>
+                    <th>Nom</th>
+                    <th>Slug</th>
+                    <th>Articles</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($articles as $article)
+                @forelse ($categories as $category)
                     <tr>
-                        <td>{{ $article->title }}</td>
-                        <td>{{ $article->category->name }}</td>
+                        <td><strong>{{ $category->name }}</strong></td>
+                        <td><code style="background:#f5f5f5;padding:2px 8px;border-radius:4px;font-size:13px;">{{ $category->slug }}</code></td>
                         <td>
-                            <span class="status-dot status-{{ $article->status }}"></span>
-                            {{ $article->status === 'published' ? 'Publié' : 'Brouillon' }}
+                            <span class="article-count">{{ $category->articles_count ?? $category->articles->count() }}</span>
                         </td>
-                        <td>{{ $article->created_at->format('d/m/Y') }}</td>
                         <td class="actions">
                             <button type="button" class="icon-btn" title="Modifier" disabled>✎</button>
                             <button type="button" class="icon-btn" title="Supprimer" disabled>✕</button>
-                            <button type="button" class="icon-btn" title="Publier" disabled>➤</button>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="empty-state">Aucun article.</td>
+                        <td colspan="4" class="empty-state">Aucune catégorie.</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
 
         <div class="pagination-bar">
-            @if ($articles->onFirstPage())
+            @if ($categories->onFirstPage())
                 <span class="btn-pill disabled">← Précédent</span>
             @else
-                <a href="{{ $articles->appends(request()->query())->previousPageUrl() }}" class="btn-pill">← Précédent</a>
+                <a href="{{ $categories->appends(request()->query())->previousPageUrl() }}" class="btn-pill">← Précédent</a>
             @endif
 
-            <span class="page-indicator">Page {{ $articles->currentPage() }}/{{ max($articles->lastPage(), 1) }}</span>
+            <span class="page-indicator">Page {{ $categories->currentPage() }}/{{ max($categories->lastPage(), 1) }}</span>
 
-            @if ($articles->hasMorePages())
-                <a href="{{ $articles->appends(request()->query())->nextPageUrl() }}" class="btn-pill">Suivant →</a>
+            @if ($categories->hasMorePages())
+                <a href="{{ $categories->appends(request()->query())->nextPageUrl() }}" class="btn-pill">Suivant →</a>
             @else
                 <span class="btn-pill disabled">Suivant →</span>
             @endif
