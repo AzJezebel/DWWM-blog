@@ -8,10 +8,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/categories', [CategoryController::class, 'index']);
-// Route::get('/articles', [ArticleController::class, 'index']);
-
 Route::get('/admin/toggle', [ArticleController::class, 'toggleAdmin'])->name('admin.toggle');
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
-
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
