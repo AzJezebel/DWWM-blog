@@ -11,10 +11,24 @@ class ArticleController extends Controller
 {
     private array $placeholderTags = ['Tag 1', 'Tag 2', 'Tag 3'];
     public function index(): View {
-        // $articles = Article::all();
+        $query = Article::query()
+            ->with('category')
+            ->where('status', 'PUBLISHED');
         
-        $query = Article::query()->with('category');
-        $articles = $query->latest()->paginate(10)->withQueryString();
+        // // Apply category filter if present
+        // if (request()->has('category') && request('category') != '') {
+        //     $query->where('category_id', request('category'));
+        // }
+        
+        // // Apply tag filter if present (if you have tags implemented)
+        // if (request()->has('tag') && request('tag') != '') {                                                                    
+        //     // If you have a tags relationship
+        //     // $query->whereHas('tags', function($q) {
+        //     //     $q->where('name', request('tag'));
+        //     // });
+        // }
+        
+        $articles = $query->latest()->paginate(4)->withQueryString();
         $categories = Category::all();
         
         $data = [
@@ -33,10 +47,10 @@ class ArticleController extends Controller
         return back();
     }
     
-    public function show(Article $article)
+    public function show(string $slug)
     {
-        // Charger les relations nécessaires
-        $article->load(['user', 'category']);
+        // Find article by slug instead of ID
+        $article = Article::with(['user', 'category'])->where('slug', $slug)->firstOrFail();
 
         return view('user.article-details', compact('article'));
     }
