@@ -32,4 +32,12 @@ class ArticleController extends Controller
     
         return back();
     }
+    
+    public function show(Article $article)
+    {
+        // Charger les relations nécessaires
+        $article->load(['user', 'category']);
+
+        return view('user.article-details', compact('article'));
+    }
 }

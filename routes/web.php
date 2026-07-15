@@ -11,3 +11,4 @@ Route::get('/', function () {
 Route::get('/admin/toggle', [ArticleController::class, 'toggleAdmin'])->name('admin.toggle');
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');

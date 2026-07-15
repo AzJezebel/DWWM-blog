@@ -250,6 +250,7 @@
 
         .read-link { font-size: 14px; text-decoration: underline; display: inline-block; }
     </style>
+     @stack('styles')
 </head>
 <body>
     <header class="topbar">
