@@ -191,6 +191,19 @@
         .icon-btn:not(.disabled):hover {
             opacity: 1;
         }
+        
+        .inline-action-form {
+            display: inline;
+        }
+
+        .inline-action-form .icon-btn {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        .inline-action-form .icon-btn:hover {
+            opacity: 1;
+        }
 
         .article-count {
             display: inline-block;

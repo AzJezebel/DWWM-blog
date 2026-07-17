@@ -97,4 +97,23 @@ class ArticleController extends Controller
 
         return redirect()->route('articles.index')->with('success', 'Article mis à jour.');
     }
+    public function publish(int $id)
+    {
+        $article = Article::findOrFail($id);
+        
+        // Only publish if the article is not already published
+        if ($article->status !== 'PUBLISHED') {
+            $article->status = 'PUBLISHED';
+            $article->save(); // triggers your booted() saving hook, sets published_at automatically
+        }
+
+        return redirect()->route('article.show', ['slug' => $article->slug]);
+    }
+    public function destroy(int $id)
+    {
+        $article = Article::findOrFail($id);
+        $article->delete();
+        
+        return redirect()->route('articles.index')->with('success', 'Article supprimé.');
+    }
 }
