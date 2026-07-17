@@ -7,7 +7,8 @@
         <h1>Articles</h1>
         <div class="header-actions">
             <a href="{{ route('categories.index') }}" class="btn-pill btn-pill-outline">Gérer les catégories</a>
-            <button type="button" class="btn-pill" disabled title="À venir">+ Nouvel article</button>
+            {{-- <button type="button" class="btn-pill" disabled title="À venir">+ Nouvel article</button> --}}
+            <a href="{{ route('admin.article-create') }}" class="btn-pill">+ Nouvel article</a>
         </div>
     </div>
 
