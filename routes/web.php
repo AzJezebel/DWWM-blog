@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,3 +31,9 @@ Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('ad
 Route::patch('/articles/{id}/publish', [ArticleController::class, 'publish'])->name('admin.article-publish');
 
 Route::resource('categories', CategoryController::class);
+
+
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('/register', 'create')->name('register.create');
+    Route::post('/register', 'store')->name('register.store');
+});
