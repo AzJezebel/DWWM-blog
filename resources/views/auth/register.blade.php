@@ -5,7 +5,7 @@
 
 @section('navbar')
     <span>Vous êtes déjà inscrit ?</span>
-    <a href="{{ route('login') }}">→ Se connecter</a>
+    {{-- <a href="{{ route('login') }}">→ Se connecter</a> --}}
 @endsection
 
 @section('content')
