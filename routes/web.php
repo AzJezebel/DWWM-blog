@@ -29,7 +29,4 @@ Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('ad
 // Publish an article
 Route::patch('/articles/{id}/publish', [ArticleController::class, 'publish'])->name('admin.article-publish');
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    // Single line creates ALL CRUD routes
-    Route::resource('categories', CategoryController::class);
-});
+Route::resource('categories', CategoryController::class);
