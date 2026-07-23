@@ -5,8 +5,19 @@
 @section('content')
     <div class="admin-panel-header">
         <h1>Catégories</h1>
-        <button type="button" class="btn-pill" disabled title="À venir">+ Nouvelle catégorie</button>
+        <a href="{{ route('categories.create') }}" class="btn-pill">
+            + Nouvelle catégorie
+        </a>
     </div>
+
+    {{-- Flash messages --}}
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
 
     <table class="admin-table">
         <thead>

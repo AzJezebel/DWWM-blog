@@ -5,7 +5,28 @@
         <span class="article-count">{{ $category->articles_count ?? $category->articles->count() }}</span>
     </td>
     <td class="actions">
-        <button type="button" class="icon-btn" title="Modifier" disabled>✎</button>
-        <button type="button" class="icon-btn" title="Supprimer" disabled>✕</button>
+        {{-- View button --}}
+        {{-- <a href="{{ route('categories.show', $category->id) }}" 
+           class="icon-btn" 
+           title="Voir">
+            👁️
+        </a> --}}
+
+        {{-- Edit button --}}
+        <a href="{{ route('categories.edit', $category->id) }}" 
+           class="icon-btn" 
+           title="Modifier">
+            ✎
+        </a>
+
+        {{-- Delete button with confirmation --}}
+        <form action="{{ route('categories.destroy', $category->id) }}" 
+              method="POST" 
+              style="display:inline;"
+              onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="icon-btn" title="Supprimer">✕</button>
+        </form>
     </td>
 </tr>
