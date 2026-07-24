@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,12 +31,14 @@ Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('ad
 // Publish an article
 Route::patch('/articles/{id}/publish', [ArticleController::class, 'publish'])->name('admin.article-publish');
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    // Single line creates ALL CRUD routes
-    Route::resource('categories', CategoryController::class);
-});
+Route::resource('categories', CategoryController::class);
+
 
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/register', 'create')->name('register.create');
     Route::post('/register', 'store')->name('register.store');
 });
+
+
+Route::get('/login', [LoginController::class, 'create'])->name('login.create');
+Route::post('/login', [LoginController::class, 'store'])->name('login.store');
