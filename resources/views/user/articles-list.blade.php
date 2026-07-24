@@ -3,8 +3,8 @@
 @section('title', 'Articles')
 
 @section('navbar')
-    <a href="#">Se connecter</a>
-    <a href="#">S'inscrire</a>
+    <a href="{{ route('login.create') }}">Se connecter</a>
+    <a href="{{ route('register.create') }}">S'inscrire</a>
     <a href="{{ route('admin.toggle') }}" class="admin-sim-link">Simuler vue admin</a>
 @endsection
 
@@ -16,7 +16,7 @@
             <select name="category" onchange="document.getElementById('filters-form').submit()">
                 <option value="">Toutes les catégories</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->slug }}" @selected(request('category') == $category->id)>
+                    <option value="{{ $category->slug }}" @selected(request('category') == $category->slug)>
                         {{ $category->name }}
                     </option>
                 @endforeach
