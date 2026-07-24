@@ -16,7 +16,7 @@
             <select name="category" onchange="document.getElementById('filters-form').submit()">
                 <option value="">Toutes les catégories</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->slug }}" @selected(request('category') == $category->id)>
+                    <option value="{{ $category->slug }}" @selected(request('category') == $category->slug)>
                         {{ $category->name }}
                     </option>
                 @endforeach

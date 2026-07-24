@@ -1,7 +1,12 @@
 <article class="article-card">
     <div class="article-card-top">
         <div class="tags">
-            <span class="tag">{{ $article->category->name }}</span>
+            <span class="tag category-tag">{{ $article->category->name }}</span>
+            @if($article->tags)
+                @foreach($article->tags as $tag)
+                    <span class="tag">{{ $tag->name }}</span>
+                @endforeach
+            @endif
         </div>
         <time class="article-date">{{ $article->created_at->translatedFormat('d M. Y') }}</time>
     </div>

@@ -10,21 +10,22 @@ use Illuminate\View\View;
 class ArticleController extends Controller
 {
     private array $placeholderTags = ['Tag 1', 'Tag 2', 'Tag 3'];
-    public function index(): View {
+    public function index(Request $request): View {
         $query = session('is_admin') ? Article::query()->with('category') : Article::query()->with('category')->where('status', 'PUBLISHED');  
         
-        // // Apply category filter if present
-        // if (request()->has('category') && request('category') != '') {
-        //     $query->where('category_id', request('category'));
-        // }
-        
-        // // Apply tag filter if present (if you have tags implemented)
-        // if (request()->has('tag') && request('tag') != '') {                                                                    
-        //     // If you have a tags relationship
-        //     // $query->whereHas('tags', function($q) {
-        //     //     $q->where('name', request('tag'));
-        //     // });
-        // }
+        // Filter by category
+        if ($request->filled('category')) {
+            $query->whereHas('category', function ($q) use ($request) {
+                $q->where('slug', $request->category);
+            });
+        }
+
+        // Filter by tag (if you have tags)
+        if ($request->filled('tag')) {
+            $query->whereHas('tags', function ($q) use ($request) {
+                $q->where('name', $request->tag);
+            });
+        }
         
         $articles = $query->latest()->paginate(4)->withQueryString();
         $categories = Category::all();

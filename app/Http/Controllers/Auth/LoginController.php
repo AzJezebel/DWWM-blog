@@ -29,4 +29,19 @@ class LoginController extends Controller
 
         request()->session()->regenerate();
     }
+
+    public function destroy(Request $request)
+    {
+        // Logout the user
+        Auth::logout();
+        
+        // Invalidate the session
+        $request->session()->invalidate();
+        
+        // Regenerate CSRF token
+        $request->session()->regenerateToken();
+        
+        // Redirect with success message
+        return redirect('/')->with('success', 'Déconnexion réussie !');
+    }
 }
