@@ -1,12 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
 @section('title', $article->title)
-
-@section('navbar')
-    <a href="#">Se connecter</a>
-    <a href="#">S'inscrire</a>
-    <a href="{{ route('admin.toggle') }}" class="admin-sim-link">Simuler vue admin</a>
-@endsection
 
 @section('content')
     <div class="article-detail-container">

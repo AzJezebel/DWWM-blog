@@ -1,12 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
 @section('title', 'Articles')
-
-@section('navbar')
-    <a href="{{ route('login.create') }}">Se connecter</a>
-    <a href="{{ route('register.create') }}">S'inscrire</a>
-    <a href="{{ route('admin.toggle') }}" class="admin-sim-link">Simuler vue admin</a>
-@endsection
 
 @section('content')
     <section class="filters-bar">

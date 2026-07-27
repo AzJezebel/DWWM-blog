@@ -14,10 +14,10 @@ Route::get('/', function () {
 Route::get('/admin/toggle', [ArticleController::class, 'toggleAdmin'])->name('admin.toggle');
 // List all categories
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-// List all articles (admin view or user view based on session)
-Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
-// Show a single article by slug
-Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('article.show');
+// // List all articles (admin view or user view based on session)
+// Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+// // Show a single article by slug
+// Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 // Admin routes for article management
 Route::get('/article/create', [ArticleController::class, 'create'])->name('admin.article-create');
 // Store a new article
@@ -34,12 +34,61 @@ Route::patch('/articles/{id}/publish', [ArticleController::class, 'publish'])->n
 Route::resource('categories', CategoryController::class);
 
 
-Route::controller(RegisterController::class)->group(function () {
-    Route::get('/register', 'create')->name('register.create');
-    Route::post('/register', 'store')->name('register.store');
+// Route::controller(RegisterController::class)->group(function () {
+//     Route::get('/register', 'create')->name('register.create');
+//     Route::post('/register', 'store')->name('register.store');
+// });
+
+
+// Route::get('/login', [LoginController::class, 'create'])->name('login.create');
+// Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+// Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+
+// ============================================
+// GUEST ROUTES (Not logged in)
+// ============================================
+Route::middleware('guest')->group(function () {
+    // Authentication routes
+    Route::controller(LoginController::class)->group(function () {
+        Route::get('/login', 'create')->name('login.create');
+        Route::post('/login', 'store')->name('login.store');
+    });
+
+    Route::controller(RegisterController::class)->group(function () {
+        Route::get('/register', 'create')->name('register.create');
+        Route::post('/register', 'store')->name('register.store');
+    });
+});
+
+// ============================================
+// AUTHENTICATED ROUTES (Logged in users)
+// ============================================
+Route::middleware('auth')->group(function () {
+    // Logout
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+    
+    // // User dashboard or home
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
 });
 
 
-Route::get('/login', [LoginController::class, 'create'])->name('login.create');
-Route::post('/login', [LoginController::class, 'store'])->name('login.store');
-Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+// // ============================================
+// // ADMIN ROUTES (Admin only)
+// // ============================================
+// Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+//     Route::get('/toggle', [AdminController::class, 'toggle'])->name('toggle');
+//     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    
+//     // Admin resource routes
+//     Route::resource('users', App\Http\Controllers\Admin\UserController::class);
+//     Route::resource('categories', App\Http\Controllers\Admin\CategoryController::class);
+// });
+
+// ============================================
+// PUBLIC ROUTES (Accessible by everyone)
+// ============================================
+Route::get('/', [ArticleController::class, 'index'])->name('home');
+Route::resource('articles', ArticleController::class)->only(['index', 'show'])->parameter('articles', 'slug');;

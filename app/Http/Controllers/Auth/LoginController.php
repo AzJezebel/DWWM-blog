@@ -20,7 +20,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/')->with('success', 'Connexion réussie !');
+            return redirect()->intended('/articles')->with('success', 'Connexion réussie !');
         }
 
         return back()->withErrors([
@@ -42,6 +42,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
         
         // Redirect with success message
-        return redirect('/')->with('success', 'Déconnexion réussie !');
+        return redirect('/articles')->with('success', 'Déconnexion réussie !');
     }
 }

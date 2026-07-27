@@ -1,5 +1,5 @@
 <tr>
-    <td><a href="{{ route('article.show', ['slug' => $article->slug]) }}" class="article-link">{{ $article->title }}</a></td>
+    <td><a href="{{ route('articles.show', ['slug' => $article->slug]) }}" class="article-link">{{ $article->title }}</a></td>
     <td>{{ $article->category->name }}</td>
     <td>
         <span class="status-dot status-{{ strtolower($article->status) }}"></span>
